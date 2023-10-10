@@ -4,6 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { useRouter } from 'next/navigation'
+import { FaHome } from 'react-icons/fa'
 const Result = ({ result, setResult }) => {
     const unique_id = uuid();
     const small_id = unique_id.slice(0, 5)
@@ -30,13 +31,15 @@ const Result = ({ result, setResult }) => {
                             </div>
                             <div>
                                 {/* <button onClick={handleRedirect} className='btn wt-border btn-warning start-btn'>download</button> */}
-                                <a href={result} download={`${small_id}`} onClick={handleRedirect} target="_blank" rel="noopener noreferrer" className='btn wt-border btn-warning start-btn'>Save</a>
+                                <a href={result} download={`${small_id}`} target="_blank" rel="noopener noreferrer" className='btn wt-border btn-warning start-btn'>Save</a>
                             </div>
                         </div>
                     </Col>
                 </Row>
-
             </Container>
+            <Link href='/' className="back-home">
+                <FaHome />
+            </Link>
         </div>
     )
 }
