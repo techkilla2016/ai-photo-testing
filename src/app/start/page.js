@@ -40,21 +40,21 @@ const Home = () => {
         }, 1000)
     }, [cookies])
 
-    // select image from computer 
-    const changeFile = event => {
-        const file = event.target.files[0]
-        setFiles(file)
-    }
+    // // select image from computer 
+    // const changeFile = event => {
+    //     const file = event.target.files[0]
+    //     setFiles(file)
+    // }
 
-    // upload Image file 
-    const uploadFile = () => {
-        const reader = new FileReader();
-        reader.readAsDataURL(files);
-        reader.onload = function () {
-            const base64String = reader.result;
-            setImgFile(base64String);
-        };
-    }
+    // // upload Image file 
+    // const uploadFile = () => {
+    //     const reader = new FileReader();
+    //     reader.readAsDataURL(files);
+    //     reader.onload = function () {
+    //         const base64String = reader.result;
+    //         setImgFile(base64String);
+    //     };
+    // }
 
     // select Template 
     const handleStart = () => {
