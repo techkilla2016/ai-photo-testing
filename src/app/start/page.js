@@ -78,7 +78,7 @@ const Home = () => {
         try {
             // console.log(imgFile)
             // axios.post('https://1a53-103-17-110-126.ngrok-free.app/rec', {
-            axios.post('https://03e4-103-17-110-97.ngrok-free.app/rec', {
+            axios.post('https://2964-103-17-110-97.ngrok-free.app/rec', {
                 image: imgFile.split(',')[1],
                 choice: select
             }).then(res => {
