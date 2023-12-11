@@ -46,7 +46,7 @@ const Result = ({ result, setResult }) => {
         printWindow.print();
         printWindow.close();
     };
-    
+
     return (
         <div className='center_main py-5 '>
             <h1 className='text-center'>Here is Your Photograph</h1>
@@ -65,7 +65,7 @@ const Result = ({ result, setResult }) => {
                                 <a href={result} download={`${small_id}`} target="_blank" rel="noopener noreferrer" className='btn wt-border btn-warning start-btn'>Save</a>
                             </div>
                             <div>
-                                <button onClick={handleQrCode} className='btn wt-border btn-warning start-btn'>Geberate QR</button>
+                                <button onClick={handleQrCode} className='btn wt-border btn-warning start-btn'>Generate QR</button>
                             </div>
                             <div className='my-2'>
                                 <button onClick={handlePrint} className='btn wt-border btn-warning start-btn' >print</button>
