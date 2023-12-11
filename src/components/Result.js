@@ -1,8 +1,9 @@
 "use client"
 import { v4 as uuid } from 'uuid';
 import Link from 'next/link'
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import QRCode from 'qrcode.react'
+import React, { useState } from 'react'
+import { Container, Row, Col, Modal } from 'react-bootstrap'
 import { useRouter } from 'next/navigation'
 import { FaHome } from 'react-icons/fa'
 import axios from 'axios';
@@ -10,7 +11,8 @@ const Result = ({ result, setResult }) => {
     const unique_id = uuid();
     const small_id = unique_id.slice(0, 5)
     const router = useRouter()
-
+    const [showQr, setShowQr] = useState(false)
+    const [qr, setQr] = useState('')
     const handleRedirect = () => {
         setTimeout(() => {
             router.push(`result/${small_id}`);
@@ -20,9 +22,10 @@ const Result = ({ result, setResult }) => {
     const handleQrCode = async () => {
         try {
             const data = await axios.post('https://dis2023.com/aiphotobooth/upload.php', {
-                img: result
+                img: result.split(',')[1]
             })
-            console.log(data)
+            setQr(data?.data?.url)
+            setShowQr(true)
         } catch (error) {
             console.log(error)
         }
@@ -72,6 +75,25 @@ const Result = ({ result, setResult }) => {
                             </div>
                         </div>
                     </Col>
+                    <Modal
+                        show={showQr}
+                        onHide={() => { setShowQr(false) }}
+                        aria-labelledby="contained-modal-title-vcenter"
+                        centered >
+                        <Modal.Header closeButton>
+                            <Modal.Title id="contained-modal-title-vcenter">
+                                Scan this QR to get image
+                            </Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div className="d-flex justify-content-center">
+                                <QRCode value={qr} size={200} />
+                            </div>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <button className='btn btn-danger' onClick={() => setShowQr(false)}>Close</button>
+                        </Modal.Footer>
+                    </Modal>
                 </Row>
             </Container>
             <Link href='/' className="back-home">
